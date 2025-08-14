@@ -1,0 +1,419 @@
+{
+  "memory_index": {
+    "project_overview": {
+      "project_name": "Autonomous Physical Therapy Device",
+      "project_type": "IEC 62304 Class C Medical Device",
+      "development_approach": "AI-assisted medical device development",
+      "compliance_standards": ["IEC 62304", "HIPAA", "GDPR", "FDA 510(k)", "CE Marking"],
+      "primary_technologies": ["C++17", "Python 3.10", "MediaPipe", "TensorRT", "Supabase"],
+      "target_platform": "NVIDIA Jetson Orin NX with ORBBEC Femto Mega",
+      "development_platform": "Intel RealSense D435 with gaming laptop",
+      "created_date": "2025-01-14",
+      "last_updated": "2025-01-14"
+    },
+    "memory_categories": {
+      "technical_decisions": {
+        "file": "technical_decisions.json",
+        "description": "Technical decisions and rationale for architecture, technology stack, and implementation choices",
+        "key_contents": [
+          "Primary language selection (C++ with IEC 62304 compliance)",
+          "Hardware abstraction strategy",
+          "AI framework selection (MediaPipe C++ with TensorRT)",
+          "Build system choice (CMake with cross-compilation)",
+          "Database system (Supabase with HIPAA compliance)",
+          "Testing strategy (Multi-layer with GoogleTest)",
+          "Deployment approach (Containerized with Docker)",
+          "Version control (Git with GitFlow)"
+        ],
+        "decision_criteria": [
+          "Performance requirements",
+          "Compliance standards",
+          "Scalability needs",
+          "Maintainability",
+          "Security requirements",
+          "Cost considerations",
+          "Team expertise",
+          "Regulatory requirements"
+        ],
+        "review_schedule": "Monthly technical decision reviews"
+      },
+      "hardware_specifications": {
+        "file": "hardware_specifications.json",
+        "description": "Current and target hardware specifications with migration strategy",
+        "key_contents": [
+          "Development setup (Intel RealSense D435 + Gaming laptop)",
+          "Production setup (ORBBEC Femto Mega + Jetson Orin NX)",
+          "Migration strategy and compatibility",
+          "Performance comparison analysis",
+          "Cost analysis and optimization",
+          "Regulatory considerations",
+          "Future roadmap and scalability"
+        ],
+        "hardware_categories": [
+          "Camera systems",
+          "Computing platforms",
+          "Performance specifications",
+          "Power consumption",
+          "Environmental requirements",
+          "Medical device compliance"
+        ],
+        "validation_requirements": [
+          "Performance testing",
+          "Reliability testing", 
+          "Clinical validation",
+          "Environmental testing"
+        ]
+      },
+      "compliance_requirements": {
+        "file": "compliance_requirements.json",
+        "description": "Comprehensive regulatory compliance requirements and implementation status",
+        "key_contents": [
+          "IEC 62304 Class C requirements and implementation",
+          "ISO 14971 risk management processes",
+          "ISO 13485 quality management system",
+          "HIPAA administrative, physical, and technical safeguards",
+          "GDPR data protection requirements",
+          "NIST Cybersecurity Framework implementation",
+          "Testing and validation requirements",
+          "Regulatory submission planning"
+        ],
+        "compliance_standards": {
+          "medical_device": ["IEC 62304", "ISO 14971", "ISO 13485"],
+          "data_protection": ["HIPAA", "GDPR"],
+          "cybersecurity": ["NIST Cybersecurity Framework"],
+          "regulatory_submissions": ["FDA 510(k)", "CE Marking"]
+        },
+        "compliance_timeline": {
+          "2025_q1": "Complete IEC 62304 documentation, HIPAA implementation",
+          "2025_q2": "Clinical validation, GDPR compliance",
+          "2025_q3": "Regulatory submissions, compliance audit",
+          "2025_q4": "Regulatory approval, market preparation"
+        }
+      },
+      "performance_requirements": {
+        "file": "performance_requirements.json", 
+        "description": "Performance targets, metrics, and optimization strategies",
+        "key_contents": [
+          "Real-time processing requirements (<500ms latency)",
+          "Accuracy requirements (>95% pose estimation)",
+          "Resource utilization limits (<8GB RAM, <25W power)",
+          "Reliability requirements (>99.5% uptime)",
+          "Scalability requirements",
+          "Security performance requirements",
+          "Environmental and usability requirements",
+          "Compliance performance requirements"
+        ],
+        "performance_categories": [
+          "Real-time processing",
+          "Accuracy and precision",
+          "Resource utilization",
+          "System reliability",
+          "Scalability",
+          "Security performance",
+          "Environmental tolerance",
+          "User experience"
+        ],
+        "monitoring_strategy": {
+          "continuous_monitoring": "Real-time performance metrics",
+          "benchmarking": "Regular performance validation",
+          "optimization_tracking": "Performance improvement tracking"
+        }
+      },
+      "sprint_memory": {
+        "file": "sprint_memory.json",
+        "description": "Sprint planning, execution details, and lessons learned",
+        "key_contents": [
+          "Sprint 1: Foundation Setup & AI Data Pipeline Integration",
+          "Sprint goals and success criteria",
+          "Technical achievements and deliverables",
+          "AI data pipeline integration details",
+          "Lessons learned and best practices",
+          "Risk assessment and mitigation",
+          "Stakeholder feedback and action items",
+          "Next sprint planning and roadmap"
+        ],
+        "sprint_categories": [
+          "Sprint planning and goals",
+          "Technical implementation",
+          "AI and data pipeline",
+          "Quality metrics",
+          "Risk management",
+          "Stakeholder management",
+          "Continuous improvement"
+        ],
+        "knowledge_management": [
+          "Documentation strategy",
+          "Knowledge sharing processes",
+          "Continuous improvement methods"
+        ]
+      },
+      "data_pipeline_memory": {
+        "file": "data_pipeline_memory.json",
+        "description": "AI data pipeline, datasets, and model training information",
+        "key_contents": [
+          "Medical rehabilitation datasets (IntelliRehabDS, TRSP, Human3.6M)",
+          "Data processing pipeline (Download, Preprocessing, Augmentation, Training, Validation)",
+          "Model training infrastructure and strategies",
+          "Data governance and compliance",
+          "Clinical validation framework",
+          "Integration points and future enhancements"
+        ],
+        "dataset_categories": [
+          "Clinical rehabilitation data",
+          "Stroke rehabilitation data",
+          "General human movement data",
+          "Augmented training data"
+        ],
+        "pipeline_stages": [
+          "Automated data download",
+          "Standardized preprocessing",
+          "Clinical-aware augmentation",
+          "Medical AI model training",
+          "Clinical validation testing"
+        ],
+        "compliance_focus": [
+          "HIPAA-compliant data handling",
+          "IEC 62304 compliant processing",
+          "Clinical validation requirements",
+          "Regulatory submission support"
+        ]
+      }
+    },
+    "cross_references": {
+      "technical_to_hardware": [
+        "Hardware abstraction implementation",
+        "Performance optimization strategies",
+        "Migration planning and execution"
+      ],
+      "compliance_to_performance": [
+        "IEC 62304 performance requirements",
+        "Medical device reliability standards",
+        "Clinical validation metrics"
+      ],
+      "sprint_to_data_pipeline": [
+        "AI integration achievements",
+        "Dataset integration milestones",
+        "Model training progress"
+      ],
+      "hardware_to_performance": [
+        "Platform-specific optimizations",
+        "Resource utilization targets",
+        "Environmental performance"
+      ],
+      "compliance_to_data_pipeline": [
+        "Medical data handling requirements",
+        "Clinical validation standards",
+        "Regulatory submission data"
+      ]
+    },
+    "search_keywords": {
+      "architecture": [
+        "C++ medical device",
+        "Hardware abstraction",
+        "MediaPipe integration",
+        "TensorRT optimization",
+        "CMake build system"
+      ],
+      "compliance": [
+        "IEC 62304 Class C",
+        "HIPAA compliance",
+        "Medical device software",
+        "Risk management",
+        "Clinical validation"
+      ],
+      "hardware": [
+        "Intel RealSense D435",
+        "ORBBEC Femto Mega", 
+        "NVIDIA Jetson Orin NX",
+        "Camera migration",
+        "Edge computing"
+      ],
+      "ai_ml": [
+        "Pose estimation",
+        "Movement analysis",
+        "Quality assessment",
+        "Medical datasets",
+        "Clinical validation"
+      ],
+      "performance": [
+        "Real-time processing",
+        "Latency optimization",
+        "Resource utilization",
+        "Power consumption",
+        "Accuracy targets"
+      ],
+      "development": [
+        "Sprint planning",
+        "CI/CD pipeline",
+        "Testing framework",
+        "Documentation",
+        "Version control"
+      ]
+    },
+    "access_patterns": {
+      "by_role": {
+        "medical_device_engineer": [
+          "compliance_requirements",
+          "hardware_specifications",
+          "performance_requirements"
+        ],
+        "ai_ml_engineer": [
+          "data_pipeline_memory",
+          "technical_decisions",
+          "performance_requirements"
+        ],
+        "software_architect": [
+          "technical_decisions",
+          "hardware_specifications", 
+          "sprint_memory"
+        ],
+        "project_manager": [
+          "sprint_memory",
+          "compliance_requirements",
+          "performance_requirements"
+        ],
+        "clinical_specialist": [
+          "data_pipeline_memory",
+          "compliance_requirements",
+          "performance_requirements"
+        ]
+      },
+      "by_phase": {
+        "planning": [
+          "technical_decisions",
+          "hardware_specifications",
+          "compliance_requirements"
+        ],
+        "development": [
+          "sprint_memory",
+          "technical_decisions",
+          "performance_requirements"
+        ],
+        "validation": [
+          "compliance_requirements",
+          "performance_requirements",
+          "data_pipeline_memory"
+        ],
+        "deployment": [
+          "hardware_specifications",
+          "performance_requirements",
+          "compliance_requirements"
+        ]
+      },
+      "by_concern": {
+        "regulatory": [
+          "compliance_requirements",
+          "data_pipeline_memory",
+          "sprint_memory"
+        ],
+        "technical": [
+          "technical_decisions",
+          "hardware_specifications",
+          "performance_requirements"
+        ],
+        "clinical": [
+          "data_pipeline_memory",
+          "compliance_requirements",
+          "performance_requirements"
+        ],
+        "business": [
+          "sprint_memory",
+          "hardware_specifications",
+          "compliance_requirements"
+        ]
+      }
+    },
+    "maintenance_schedule": {
+      "daily": [
+        "Sprint progress updates",
+        "Performance metrics review",
+        "Issue tracking updates"
+      ],
+      "weekly": [
+        "Technical decision reviews",
+        "Compliance status updates",
+        "Risk assessment updates"
+      ],
+      "monthly": [
+        "Comprehensive memory review",
+        "Cross-reference validation",
+        "Knowledge base optimization"
+      ],
+      "quarterly": [
+        "Strategic decision review",
+        "Compliance audit preparation",
+        "Long-term planning updates"
+      ]
+    },
+    "quality_assurance": {
+      "accuracy": [
+        "Regular fact-checking",
+        "Cross-reference validation",
+        "Expert review process"
+      ],
+      "completeness": [
+        "Coverage assessment",
+        "Gap analysis",
+        "Continuous updates"
+      ],
+      "consistency": [
+        "Terminology standardization",
+        "Format consistency",
+        "Cross-document alignment"
+      ],
+      "accessibility": [
+        "Clear organization",
+        "Searchable content",
+        "Role-based access"
+      ]
+    },
+    "integration_points": {
+      "development_tools": [
+        "IDE integration",
+        "Documentation generators",
+        "Code analysis tools"
+      ],
+      "project_management": [
+        "Sprint planning tools",
+        "Issue tracking systems",
+        "Progress monitoring"
+      ],
+      "compliance_tools": [
+        "Audit trail systems",
+        "Compliance tracking",
+        "Regulatory reporting"
+      ],
+      "knowledge_sharing": [
+        "Team wikis",
+        "Training materials",
+        "Best practice guides"
+      ]
+    }
+  },
+  "usage_guidelines": {
+    "search_best_practices": [
+      "Use specific keywords for targeted searches",
+      "Check cross-references for related information",
+      "Review multiple memory categories for comprehensive understanding",
+      "Validate information with latest updates"
+    ],
+    "update_procedures": [
+      "Follow established review processes",
+      "Maintain cross-reference consistency",
+      "Document change rationale",
+      "Notify relevant stakeholders"
+    ],
+    "access_control": [
+      "Role-based access restrictions",
+      "Audit trail for all access",
+      "Regular access review",
+      "Secure storage and transmission"
+    ],
+    "backup_and_recovery": [
+      "Regular automated backups",
+      "Version control integration",
+      "Disaster recovery procedures",
+      "Data integrity validation"
+    ]
+  }
+}

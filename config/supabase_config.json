@@ -1,0 +1,209 @@
+{
+  "database": {
+    "name": "autonomous_physical_therapy_device",
+    "version": "1.0.0",
+    "compliance_standards": [
+      "IEC 62304 Class C",
+      "HIPAA",
+      "GDPR"
+    ],
+    "environment": "development"
+  },
+  "connection": {
+    "project_ref_env": "SUPABASE_PROJECT_REF",
+    "access_token_env": "SUPABASE_ACCESS_TOKEN",
+    "api_url_format": "https://{project_ref}.supabase.co",
+    "timeout": 30,
+    "retry_attempts": 3
+  },
+  "tables": {
+    "patients": {
+      "rls_enabled": true,
+      "audit_enabled": true,
+      "encryption": true,
+      "retention_days": 2555,
+      "description": "HIPAA-compliant patient information storage"
+    },
+    "treatment_sessions": {
+      "rls_enabled": true,
+      "audit_enabled": true,
+      "encryption": true,
+      "retention_days": 2555,
+      "description": "Physical therapy session records"
+    },
+    "exercise_data": {
+      "rls_enabled": true,
+      "audit_enabled": true,
+      "encryption": false,
+      "retention_days": 1095,
+      "description": "Individual exercise performance data"
+    },
+    "device_logs": {
+      "rls_enabled": true,
+      "audit_enabled": false,
+      "encryption": false,
+      "retention_days": 365,
+      "description": "Device operation and error logs"
+    },
+    "performance_metrics": {
+      "rls_enabled": true,
+      "audit_enabled": true,
+      "encryption": false,
+      "retention_days": 1095,
+      "description": "Patient performance metrics and progress tracking"
+    },
+    "ai_models": {
+      "rls_enabled": true,
+      "audit_enabled": true,
+      "encryption": false,
+      "retention_days": -1,
+      "description": "AI model versions and metadata"
+    },
+    "audit_trail": {
+      "rls_enabled": true,
+      "audit_enabled": false,
+      "encryption": true,
+      "retention_days": 2555,
+      "description": "Audit trail for compliance"
+    }
+  },
+  "storage": {
+    "buckets": {
+      "patient-data": {
+        "public": false,
+        "encryption": true,
+        "max_file_size": "100MB",
+        "allowed_types": ["image/*", "video/*", "application/pdf"],
+        "description": "HIPAA-compliant patient data storage"
+      },
+      "exercise-videos": {
+        "public": false,
+        "encryption": false,
+        "max_file_size": "500MB",
+        "allowed_types": ["video/*"],
+        "description": "Exercise demonstration videos"
+      },
+      "model-files": {
+        "public": false,
+        "encryption": false,
+        "max_file_size": "2GB",
+        "allowed_types": ["application/octet-stream", "application/x-tensorflow"],
+        "description": "AI model files and weights"
+      },
+      "reports": {
+        "public": false,
+        "encryption": true,
+        "max_file_size": "50MB",
+        "allowed_types": ["application/pdf", "text/html"],
+        "description": "Generated patient reports"
+      },
+      "device-logs": {
+        "public": false,
+        "encryption": false,
+        "max_file_size": "10MB",
+        "allowed_types": ["text/plain", "application/json"],
+        "description": "Device operation log files"
+      }
+    }
+  },
+  "security": {
+    "rls": {
+      "enabled": true,
+      "default_policy": "deny_all",
+      "roles": {
+        "patient": {
+          "permissions": ["select_own_data"],
+          "description": "Patients can only view their own data"
+        },
+        "therapist": {
+          "permissions": ["select", "insert", "update"],
+          "description": "Therapists can manage patient data"
+        },
+        "admin": {
+          "permissions": ["select", "insert", "update", "delete"],
+          "description": "Full administrative access"
+        },
+        "system": {
+          "permissions": ["insert", "update"],
+          "description": "System service access"
+        },
+        "service_role": {
+          "permissions": ["all"],
+          "description": "Service role for system operations"
+        }
+      }
+    },
+    "audit": {
+      "enabled": true,
+      "log_all_changes": true,
+      "include_user_info": true,
+      "include_ip_address": true,
+      "retention_days": 2555
+    }
+  },
+  "performance": {
+    "indexes": {
+      "auto_create": true,
+      "performance_monitoring": true,
+      "optimization_enabled": true
+    },
+    "caching": {
+      "enabled": true,
+      "ttl_seconds": 300,
+      "max_cache_size": "1GB"
+    },
+    "connection_pooling": {
+      "enabled": true,
+      "max_connections": 20,
+      "idle_timeout": 600
+    }
+  },
+  "monitoring": {
+    "metrics": {
+      "enabled": true,
+      "collection_interval": 60,
+      "retention_days": 30
+    },
+    "alerts": {
+      "enabled": true,
+      "error_threshold": 10,
+      "performance_threshold": 5000,
+      "storage_threshold": 80
+    },
+    "logging": {
+      "level": "INFO",
+      "format": "structured",
+      "include_sql": false
+    }
+  },
+  "backup": {
+    "enabled": true,
+    "frequency": "daily",
+    "retention_days": 30,
+    "encryption": true,
+    "verify_integrity": true
+  },
+  "compliance": {
+    "hipaa": {
+      "enabled": true,
+      "encryption_at_rest": true,
+      "encryption_in_transit": true,
+      "access_logging": true,
+      "data_anonymization": true
+    },
+    "iec62304": {
+      "enabled": true,
+      "class": "C",
+      "risk_management": true,
+      "change_control": true,
+      "verification": true,
+      "validation": true
+    },
+    "gdpr": {
+      "enabled": true,
+      "right_to_be_forgotten": true,
+      "data_portability": true,
+      "consent_management": true
+    }
+  }
+}

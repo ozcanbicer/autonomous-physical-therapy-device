@@ -1,0 +1,468 @@
+{
+  "data_pipeline_memory": {
+    "pipeline_overview": {
+      "purpose": "Medical rehabilitation data processing and AI model training",
+      "compliance": "IEC 62304 Class C compliant",
+      "data_types": ["Video sequences", "Pose annotations", "Clinical assessments", "Quality labels"],
+      "processing_stages": ["Download", "Preprocessing", "Augmentation", "Training", "Validation"],
+      "automation_level": "Fully automated with CI/CD integration"
+    },
+    "datasets": {
+      "intellirehab_ds": {
+        "full_name": "IntelliRehabDS - Intelligent Rehabilitation Dataset",
+        "source": "https://www.mdpi.com/2306-5729/6/5/46",
+        "doi": "10.3390/data6050046",
+        "type": "Physical rehabilitation movements",
+        "size": "Medium (estimated 500+ samples)",
+        "status": "Integrated",
+        "download_status": "Automated",
+        "preprocessing_status": "Completed",
+        "clinical_relevance": "High - Real patient rehabilitation data",
+        "features": {
+          "data_types": [
+            "RGB video sequences",
+            "Depth data",
+            "Pose keypoint annotations",
+            "Movement quality labels"
+          ],
+          "movement_categories": [
+            "Upper limb exercises",
+            "Lower limb exercises", 
+            "Trunk movements",
+            "Functional activities"
+          ],
+          "quality_assessments": [
+            "Correct movement execution",
+            "Incorrect movement patterns",
+            "Compensation strategies",
+            "Range of motion measurements"
+          ],
+          "clinical_annotations": [
+            "Exercise difficulty levels",
+            "Patient performance scores",
+            "Therapist assessments",
+            "Progress indicators"
+          ]
+        },
+        "preprocessing_pipeline": {
+          "video_processing": [
+            "Frame extraction at 30 FPS",
+            "Resolution standardization (1080p)",
+            "Color space normalization",
+            "Noise reduction filtering"
+          ],
+          "pose_processing": [
+            "Keypoint validation",
+            "Temporal smoothing",
+            "Missing keypoint interpolation",
+            "Coordinate normalization"
+          ],
+          "quality_labeling": [
+            "Binary quality classification",
+            "Continuous quality scoring",
+            "Movement phase segmentation",
+            "Error pattern identification"
+          ]
+        },
+        "augmentation_strategies": [
+          "Temporal scaling (0.8x - 1.2x speed)",
+          "Spatial rotation (±15 degrees)",
+          "Perspective transformation",
+          "Gaussian noise injection",
+          "Lighting variation simulation"
+        ],
+        "clinical_validation": {
+          "expert_validation": "Required for clinical deployment",
+          "inter_rater_reliability": "Target >0.8 kappa",
+          "clinical_correlation": "Outcome measure correlation",
+          "safety_validation": "Movement safety assessment"
+        }
+      },
+      "trsp": {
+        "full_name": "Toronto Rehab Stroke Pose Dataset",
+        "source": "https://github.com/sigtrudeau/Toronto-Rehab-Stroke-Pose-dataset",
+        "type": "Stroke rehabilitation poses",
+        "size": "Small (specialized stroke data)",
+        "status": "Integrated",
+        "download_status": "Automated",
+        "preprocessing_status": "Completed",
+        "clinical_relevance": "Very High - Stroke-specific rehabilitation",
+        "features": {
+          "patient_population": [
+            "Post-stroke patients",
+            "Hemiparesis cases",
+            "Various stroke severities",
+            "Different recovery stages"
+          ],
+          "movement_characteristics": [
+            "Pathological movement patterns",
+            "Compensation strategies",
+            "Asymmetric movements",
+            "Spasticity indicators"
+          ],
+          "clinical_assessments": [
+            "Fugl-Meyer scores",
+            "Range of motion measurements",
+            "Functional independence measures",
+            "Quality of movement ratings"
+          ],
+          "therapeutic_focus": [
+            "Upper limb rehabilitation",
+            "Functional reach activities",
+            "Coordination exercises",
+            "Strength training movements"
+          ]
+        },
+        "specialized_processing": {
+          "pathology_detection": [
+            "Abnormal movement pattern identification",
+            "Compensation strategy recognition",
+            "Spasticity level assessment",
+            "Recovery stage classification"
+          ],
+          "asymmetry_analysis": [
+            "Left-right side comparison",
+            "Bilateral coordination assessment",
+            "Symmetry index calculation",
+            "Compensation pattern mapping"
+          ],
+          "clinical_correlation": [
+            "Functional outcome prediction",
+            "Recovery trajectory modeling",
+            "Intervention effectiveness",
+            "Prognosis indicators"
+          ]
+        },
+        "research_applications": [
+          "Stroke rehabilitation research",
+          "Movement disorder analysis",
+          "Therapeutic intervention studies",
+          "Clinical outcome prediction"
+        ]
+      },
+      "human36m": {
+        "full_name": "Human3.6M Dataset (Subset)",
+        "source": "http://vision.imar.ro/human3.6m/",
+        "type": "Human pose and motion",
+        "size": "Large (subset for rehabilitation focus)",
+        "status": "Planned",
+        "download_status": "Pending",
+        "preprocessing_status": "Not Started",
+        "clinical_relevance": "Medium - General human movement baseline",
+        "planned_usage": {
+          "baseline_modeling": "Normal human movement patterns",
+          "augmentation_source": "Additional training data",
+          "validation_set": "Cross-dataset validation",
+          "normalization": "Movement pattern normalization"
+        },
+        "subset_criteria": [
+          "Activities relevant to rehabilitation",
+          "Upper and lower limb movements",
+          "Functional movement patterns",
+          "Range of motion exercises"
+        ],
+        "integration_timeline": "Sprint 2 - Core AI Implementation"
+      }
+    },
+    "processing_pipeline": {
+      "stage_1_download": {
+        "description": "Automated dataset downloading and organization",
+        "status": "Implemented",
+        "automation": "GitHub Actions workflow",
+        "components": [
+          {
+            "component": "Download Manager",
+            "function": "Handles dataset URL fetching and file downloads",
+            "error_handling": "Retry logic, checksum validation, partial download recovery"
+          },
+          {
+            "component": "Organization System", 
+            "function": "Creates standardized directory structure",
+            "structure": "data/{raw,processed,augmented}/{dataset_name}/"
+          },
+          {
+            "component": "Metadata Extraction",
+            "function": "Extracts and stores dataset metadata",
+            "information": "File counts, sizes, formats, timestamps"
+          }
+        ],
+        "quality_checks": [
+          "File integrity verification",
+          "Format validation",
+          "Completeness assessment",
+          "Metadata consistency"
+        ]
+      },
+      "stage_2_preprocessing": {
+        "description": "Data standardization and feature extraction",
+        "status": "Implemented", 
+        "compliance": "IEC 62304 compliant processing",
+        "components": [
+          {
+            "component": "Video Processor",
+            "functions": [
+              "Frame extraction and standardization",
+              "Resolution normalization",
+              "Color space conversion",
+              "Quality enhancement"
+            ]
+          },
+          {
+            "component": "Pose Processor",
+            "functions": [
+              "Keypoint extraction and validation",
+              "Temporal smoothing",
+              "Coordinate normalization",
+              "Missing data interpolation"
+            ]
+          },
+          {
+            "component": "Clinical Processor",
+            "functions": [
+              "Assessment score extraction",
+              "Quality label processing",
+              "Clinical metadata integration",
+              "Outcome measure calculation"
+            ]
+          }
+        ],
+        "standardization": {
+          "video_format": "MP4, 1080p, 30 FPS",
+          "pose_format": "17-keypoint COCO format",
+          "coordinate_system": "Normalized (0-1) coordinates",
+          "temporal_alignment": "Frame-synchronized data"
+        },
+        "validation": {
+          "data_quality": "Automated quality assessment",
+          "clinical_validity": "Clinical expert review",
+          "technical_validation": "Format and structure verification",
+          "compliance_check": "Regulatory requirement validation"
+        }
+      },
+      "stage_3_augmentation": {
+        "description": "Data augmentation for improved model robustness",
+        "status": "Implemented",
+        "augmentation_ratio": "5x original dataset size",
+        "techniques": {
+          "temporal_augmentation": [
+            "Speed variation (0.8x - 1.2x)",
+            "Temporal shifting",
+            "Frame dropping simulation",
+            "Temporal interpolation"
+          ],
+          "spatial_augmentation": [
+            "Rotation (±15 degrees)",
+            "Scaling (0.9x - 1.1x)",
+            "Translation (±5%)",
+            "Perspective transformation"
+          ],
+          "appearance_augmentation": [
+            "Lighting variation",
+            "Color jittering",
+            "Gaussian noise addition",
+            "Contrast adjustment"
+          ],
+          "clinical_augmentation": [
+            "Simulated measurement errors",
+            "Missing data scenarios",
+            "Sensor noise simulation",
+            "Environmental variation"
+          ]
+        },
+        "preservation_constraints": [
+          "Clinical validity maintenance",
+          "Anatomical correctness",
+          "Movement biomechanics",
+          "Therapeutic relevance"
+        ],
+        "quality_control": {
+          "augmentation_validation": "Automated quality checks",
+          "clinical_review": "Expert validation of augmented data",
+          "bias_prevention": "Balanced augmentation strategies",
+          "diversity_metrics": "Augmentation diversity measurement"
+        }
+      },
+      "stage_4_training": {
+        "description": "AI model training with medical data",
+        "status": "Implemented",
+        "compliance": "IEC 62304 compliant training process",
+        "models": {
+          "pose_estimation": {
+            "architecture": "MediaPipe-based CNN",
+            "input": "RGB video frames",
+            "output": "17-keypoint pose coordinates",
+            "accuracy_target": ">95%",
+            "training_data": "IntelliRehabDS + TRSP + augmented data"
+          },
+          "movement_analysis": {
+            "architecture": "LSTM-based sequence classifier",
+            "input": "Pose sequence data",
+            "output": "Movement quality classification",
+            "accuracy_target": ">90%",
+            "training_data": "Clinical assessment labeled data"
+          },
+          "quality_assessment": {
+            "architecture": "Multi-modal neural network",
+            "input": "Pose + movement features",
+            "output": "Quality score (0-100)",
+            "accuracy_target": ">85%",
+            "training_data": "Therapist-scored movement data"
+          }
+        },
+        "training_pipeline": {
+          "data_splitting": "70% train, 15% validation, 15% test",
+          "cross_validation": "5-fold stratified cross-validation",
+          "hyperparameter_tuning": "Automated hyperparameter optimization",
+          "model_selection": "Best model based on clinical metrics"
+        },
+        "validation_metrics": {
+          "technical_metrics": ["Accuracy", "Precision", "Recall", "F1-score"],
+          "clinical_metrics": ["Sensitivity", "Specificity", "Clinical correlation"],
+          "performance_metrics": ["Inference time", "Memory usage", "Power consumption"]
+        }
+      },
+      "stage_5_validation": {
+        "description": "Clinical and technical validation",
+        "status": "Framework Ready",
+        "validation_types": {
+          "technical_validation": {
+            "performance_testing": "Real-time processing validation",
+            "accuracy_testing": "Cross-dataset validation",
+            "robustness_testing": "Edge case and noise testing",
+            "scalability_testing": "Load and stress testing"
+          },
+          "clinical_validation": {
+            "expert_evaluation": "Clinical expert assessment",
+            "user_testing": "Therapist usability testing",
+            "patient_testing": "Patient experience validation",
+            "outcome_correlation": "Clinical outcome correlation"
+          },
+          "regulatory_validation": {
+            "compliance_testing": "IEC 62304 compliance validation",
+            "safety_testing": "Patient safety assessment",
+            "efficacy_testing": "Therapeutic efficacy validation",
+            "risk_assessment": "Clinical risk evaluation"
+          }
+        },
+        "validation_criteria": {
+          "accuracy_thresholds": "Meet or exceed target accuracies",
+          "performance_requirements": "Real-time processing capability",
+          "clinical_acceptance": "Positive clinical expert feedback",
+          "regulatory_compliance": "Full regulatory requirement compliance"
+        }
+      }
+    },
+    "model_training": {
+      "training_infrastructure": {
+        "development_platform": "ASUS TUF Gaming A15 (RTX 3060)",
+        "production_platform": "NVIDIA Jetson Orin NX",
+        "cloud_training": "Optional for large-scale training",
+        "optimization": "TensorRT for production deployment"
+      },
+      "training_schedule": {
+        "automated_training": "Daily model training runs",
+        "hyperparameter_optimization": "Weekly optimization cycles",
+        "model_validation": "Continuous validation testing",
+        "production_deployment": "Monthly model updates"
+      },
+      "model_versioning": {
+        "version_control": "Git-based model versioning",
+        "model_registry": "Centralized model storage",
+        "deployment_tracking": "Production model tracking",
+        "rollback_capability": "Previous version rollback"
+      },
+      "performance_monitoring": {
+        "training_metrics": "Loss, accuracy, convergence monitoring",
+        "validation_metrics": "Cross-validation performance tracking",
+        "production_metrics": "Real-world performance monitoring",
+        "drift_detection": "Model performance drift detection"
+      }
+    },
+    "data_governance": {
+      "privacy_protection": {
+        "data_anonymization": "Patient identity protection",
+        "access_control": "Role-based data access",
+        "audit_logging": "Complete data access tracking",
+        "retention_policies": "Data retention and deletion policies"
+      },
+      "quality_assurance": {
+        "data_validation": "Automated data quality checks",
+        "expert_review": "Clinical expert data validation",
+        "bias_detection": "Dataset bias analysis and mitigation",
+        "diversity_assessment": "Data diversity evaluation"
+      },
+      "compliance_management": {
+        "hipaa_compliance": "HIPAA-compliant data handling",
+        "gdpr_compliance": "GDPR data protection compliance",
+        "iec62304_compliance": "Medical device software compliance",
+        "clinical_trial_compliance": "Clinical trial data standards"
+      }
+    },
+    "integration_points": {
+      "database_integration": {
+        "supabase_connection": "Direct database integration",
+        "real_time_sync": "Real-time data synchronization",
+        "backup_systems": "Automated data backup",
+        "disaster_recovery": "Data recovery procedures"
+      },
+      "ci_cd_integration": {
+        "automated_pipeline": "GitHub Actions integration",
+        "testing_automation": "Automated pipeline testing",
+        "deployment_automation": "Model deployment automation",
+        "monitoring_integration": "Performance monitoring integration"
+      },
+      "clinical_systems": {
+        "ehr_integration": "Electronic health record integration",
+        "clinical_workflow": "Clinical workflow integration",
+        "reporting_systems": "Clinical reporting integration",
+        "outcome_tracking": "Patient outcome tracking"
+      }
+    },
+    "future_enhancements": {
+      "dataset_expansion": [
+        "Additional clinical datasets",
+        "Multi-center data collection",
+        "Longitudinal patient data",
+        "Cross-cultural validation data"
+      ],
+      "model_improvements": [
+        "Advanced neural architectures",
+        "Multi-modal learning",
+        "Transfer learning",
+        "Federated learning"
+      ],
+      "clinical_applications": [
+        "Personalized rehabilitation",
+        "Predictive analytics",
+        "Treatment optimization",
+        "Outcome prediction"
+      ],
+      "technology_integration": [
+        "5G connectivity",
+        "Edge computing optimization",
+        "Cloud-edge hybrid processing",
+        "Advanced sensor integration"
+      ]
+    },
+    "success_metrics": {
+      "technical_success": {
+        "pipeline_reliability": ">99% uptime",
+        "processing_speed": "<1 hour full pipeline",
+        "data_quality": ">95% data quality score",
+        "model_accuracy": "Meet all accuracy targets"
+      },
+      "clinical_success": {
+        "expert_approval": ">90% clinical expert approval",
+        "user_satisfaction": ">85% user satisfaction score",
+        "clinical_correlation": ">0.8 correlation with clinical outcomes",
+        "safety_validation": "100% safety requirement compliance"
+      },
+      "regulatory_success": {
+        "compliance_score": "100% regulatory compliance",
+        "validation_completion": "All validation requirements met",
+        "documentation_completeness": "100% documentation coverage",
+        "audit_readiness": "Full audit trail and documentation"
+      }
+    }
+  }
+}

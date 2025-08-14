@@ -1,0 +1,238 @@
+{
+  "hardware_specifications": {
+    "current_development_setup": {
+      "camera": {
+        "model": "Intel RealSense D435",
+        "specifications": {
+          "depth_range": "0.2-10m",
+          "depth_resolution": "1280x720",
+          "rgb_resolution": "1920x1080",
+          "fps": 30,
+          "depth_accuracy": "±2% at 2m",
+          "field_of_view": "87° × 58° × 95°",
+          "interface": "USB 3.0",
+          "power_consumption": "1.5W"
+        },
+        "purpose": "Development and prototyping",
+        "advantages": [
+          "Readily available",
+          "Well-documented SDK",
+          "Good development tools",
+          "Proven reliability"
+        ],
+        "limitations": [
+          "Higher power consumption",
+          "Larger form factor",
+          "Limited outdoor performance"
+        ]
+      },
+      "computer": {
+        "model": "ASUS TUF Gaming A15",
+        "specifications": {
+          "cpu": "AMD Ryzen 9 5900HX",
+          "gpu": "NVIDIA RTX 3060 6GB",
+          "ram": "16GB DDR4",
+          "storage": "1TB NVMe SSD",
+          "display": "15.6\" FHD 144Hz",
+          "ports": "USB 3.2, USB-C, HDMI",
+          "power": "180W adapter"
+        },
+        "purpose": "Development workstation",
+        "development_capabilities": [
+          "CUDA development",
+          "TensorRT optimization",
+          "Real-time debugging",
+          "Performance profiling"
+        ]
+      }
+    },
+    "target_production_setup": {
+      "camera": {
+        "model": "ORBBEC Femto Mega",
+        "specifications": {
+          "depth_range": "0.25-5.46m",
+          "depth_resolution": "1024x1024",
+          "rgb_resolution": "1920x1080",
+          "fps": 30,
+          "depth_accuracy": "<11mm + 0.1% distance",
+          "field_of_view": "120° × 120°",
+          "interface": "USB 3.0",
+          "power_consumption": "2.5W",
+          "operating_temperature": "0°C to 40°C",
+          "dimensions": "90 × 25 × 25mm"
+        },
+        "purpose": "Production deployment",
+        "advantages": [
+          "Higher accuracy",
+          "Better outdoor performance",
+          "Compact form factor",
+          "Wide field of view",
+          "Medical device certification ready"
+        ],
+        "medical_device_features": [
+          "FDA clearance pathway",
+          "Medical grade components",
+          "Enhanced reliability",
+          "Clinical validation support"
+        ]
+      },
+      "computer": {
+        "model": "NVIDIA Jetson Orin NX 16GB",
+        "specifications": {
+          "cpu": "8-core ARM Cortex-A78AE v8.2 64-bit",
+          "gpu": "1024-core NVIDIA Ampere GPU",
+          "ram": "16GB LPDDR5",
+          "storage": "64GB eMMC (expandable)",
+          "ai_performance": "100 TOPS",
+          "power_consumption": "10-25W",
+          "operating_temperature": "0°C to 60°C",
+          "dimensions": "103 × 90.5mm",
+          "interfaces": [
+            "Gigabit Ethernet",
+            "4x USB 3.2",
+            "2x MIPI CSI-2",
+            "DisplayPort",
+            "40-pin GPIO"
+          ]
+        },
+        "purpose": "Production edge computing",
+        "ai_capabilities": [
+          "TensorRT acceleration",
+          "CUDA support",
+          "Deep learning inference",
+          "Real-time processing"
+        ],
+        "medical_device_suitability": [
+          "Fanless operation",
+          "Industrial temperature range",
+          "Long-term availability",
+          "Regulatory compliance support"
+        ]
+      }
+    },
+    "migration_strategy": {
+      "hardware_abstraction": {
+        "camera_interface": "Abstract ICamera class",
+        "implementations": {
+          "development": "D435Camera implementation",
+          "production": "FemtoMegaCamera implementation"
+        },
+        "compatibility": "Same API, different hardware"
+      },
+      "performance_validation": {
+        "benchmarking": "Cross-platform performance testing",
+        "optimization": "Hardware-specific optimizations",
+        "validation": "Clinical performance validation"
+      },
+      "deployment_phases": {
+        "phase_1": "Development on D435/Gaming laptop",
+        "phase_2": "Testing on Femto Mega/Gaming laptop",
+        "phase_3": "Integration on Femto Mega/Jetson Orin NX",
+        "phase_4": "Production deployment"
+      }
+    },
+    "performance_comparison": {
+      "processing_power": {
+        "development": {
+          "cpu_performance": "High (desktop class)",
+          "gpu_performance": "High (RTX 3060)",
+          "memory_bandwidth": "High (DDR4)",
+          "power_consumption": "High (180W)"
+        },
+        "production": {
+          "cpu_performance": "Medium (ARM optimized)",
+          "gpu_performance": "High (100 TOPS AI)",
+          "memory_bandwidth": "Very High (LPDDR5)",
+          "power_consumption": "Low (10-25W)"
+        }
+      },
+      "camera_performance": {
+        "development": {
+          "accuracy": "Good (±2% at 2m)",
+          "range": "Long (10m)",
+          "power": "Low (1.5W)",
+          "size": "Large"
+        },
+        "production": {
+          "accuracy": "Excellent (<11mm)",
+          "range": "Medium (5.46m)",
+          "power": "Medium (2.5W)",
+          "size": "Compact"
+        }
+      }
+    },
+    "cost_analysis": {
+      "development_costs": {
+        "d435_camera": "$200",
+        "gaming_laptop": "$1,500",
+        "total_development": "$1,700"
+      },
+      "production_costs": {
+        "femto_mega": "$400",
+        "jetson_orin_nx": "$600",
+        "total_production": "$1,000"
+      },
+      "cost_optimization": {
+        "volume_discounts": "Available for production quantities",
+        "long_term_support": "5+ years hardware availability",
+        "maintenance_costs": "Lower due to fanless design"
+      }
+    },
+    "regulatory_considerations": {
+      "medical_device_requirements": {
+        "iec_62304": "Software lifecycle processes",
+        "iec_62366": "Usability engineering",
+        "iso_14971": "Risk management",
+        "iso_13485": "Quality management"
+      },
+      "hardware_compliance": {
+        "electromagnetic_compatibility": "EMC testing required",
+        "electrical_safety": "IEC 60601-1 for medical devices",
+        "environmental": "Operating condition validation",
+        "biocompatibility": "Patient contact assessment"
+      },
+      "certification_pathway": {
+        "fda_510k": "Predicate device comparison",
+        "ce_marking": "European conformity assessment",
+        "clinical_validation": "Clinical performance studies",
+        "quality_system": "ISO 13485 implementation"
+      }
+    },
+    "future_roadmap": {
+      "next_generation": {
+        "timeline": "2026-2027",
+        "improvements": [
+          "Higher resolution cameras",
+          "More powerful edge computing",
+          "5G connectivity",
+          "Advanced AI capabilities"
+        ]
+      },
+      "scalability": {
+        "multi_camera_support": "Stereo and multi-view setups",
+        "cloud_integration": "Hybrid edge-cloud processing",
+        "modular_design": "Upgradeable components"
+      }
+    }
+  },
+  "validation_requirements": {
+    "performance_testing": [
+      "Real-time processing validation",
+      "Accuracy benchmarking",
+      "Power consumption measurement",
+      "Thermal performance testing"
+    ],
+    "reliability_testing": [
+      "Continuous operation testing",
+      "Environmental stress testing",
+      "Component lifetime validation",
+      "Failure mode analysis"
+    ],
+    "clinical_validation": [
+      "Clinical performance studies",
+      "User acceptance testing",
+      "Safety validation",
+      "Efficacy demonstration"
+    ]
+  }
+}
