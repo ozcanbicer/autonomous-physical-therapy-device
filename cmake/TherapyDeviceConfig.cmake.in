@@ -1,0 +1,110 @@
+# TherapyDeviceConfig.cmake - CMake configuration file for Autonomous Physical Therapy Device
+#
+# This file provides configuration information for projects that want to use
+# the Autonomous Physical Therapy Device libraries.
+
+@PACKAGE_INIT@
+
+# Package information
+set(TherapyDevice_VERSION "@PROJECT_VERSION@")
+set(TherapyDevice_VERSION_MAJOR "@PROJECT_VERSION_MAJOR@")
+set(TherapyDevice_VERSION_MINOR "@PROJECT_VERSION_MINOR@")
+set(TherapyDevice_VERSION_PATCH "@PROJECT_VERSION_PATCH@")
+
+# Build configuration
+set(TherapyDevice_BUILD_TYPE "@CMAKE_BUILD_TYPE@")
+set(TherapyDevice_TARGET_PLATFORM "@TARGET_PLATFORM@")
+set(TherapyDevice_IS_JETSON "@IS_JETSON@")
+
+# Feature availability
+set(TherapyDevice_HAS_REALSENSE "@HAS_REALSENSE@")
+set(TherapyDevice_HAS_ORBBEC "@HAS_ORBBEC@")
+set(TherapyDevice_HAS_MEDIAPIPE "@HAS_MEDIAPIPE@")
+set(TherapyDevice_HAS_WEBSOCKET "@HAS_WEBSOCKET@")
+set(TherapyDevice_HAS_TENSORRT "@TENSORRT_FOUND@")
+
+# Installation paths
+set_and_check(TherapyDevice_INCLUDE_DIR "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@/therapy_device")
+set_and_check(TherapyDevice_LIB_DIR "@PACKAGE_CMAKE_INSTALL_LIBDIR@")
+set_and_check(TherapyDevice_BIN_DIR "@PACKAGE_CMAKE_INSTALL_BINDIR@")
+set_and_check(TherapyDevice_CONFIG_DIR "@PACKAGE_CMAKE_INSTALL_SYSCONFDIR@/therapy_device")
+
+# Required dependencies
+find_dependency(OpenCV 4.0 REQUIRED)
+find_dependency(Threads REQUIRED)
+
+# Optional dependencies based on build configuration
+if(TherapyDevice_HAS_REALSENSE)
+    find_dependency(realsense2)
+endif()
+
+if(TherapyDevice_HAS_MEDIAPIPE)
+    # MediaPipe dependency handling
+    find_path(MEDIAPIPE_INCLUDE_DIR mediapipe/framework/calculator_framework.h)
+    find_library(MEDIAPIPE_LIBRARY mediapipe)
+endif()
+
+if(TherapyDevice_IS_JETSON AND TherapyDevice_HAS_TENSORRT)
+    find_dependency(CUDA)
+    find_path(TENSORRT_INCLUDE_DIR NvInfer.h)
+    find_library(TENSORRT_LIBRARY nvinfer)
+endif()
+
+# Import targets
+include("${CMAKE_CURRENT_LIST_DIR}/TherapyDeviceTargets.cmake")
+
+# Convenience variables for legacy usage
+set(TherapyDevice_LIBRARIES TherapyDevice::Core TherapyDevice::Hardware TherapyDevice::AI)
+set(TherapyDevice_INCLUDE_DIRS ${TherapyDevice_INCLUDE_DIR})
+
+# Compiler requirements
+set(TherapyDevice_CXX_STANDARD 17)
+set(TherapyDevice_CXX_STANDARD_REQUIRED ON)
+
+# Medical device compliance flags
+set(TherapyDevice_COMPILE_OPTIONS
+    -Wall -Wextra -Wpedantic -Werror
+    -fstack-protector-strong
+    -D_FORTIFY_SOURCE=2
+)
+
+set(TherapyDevice_LINK_OPTIONS
+    -fstack-protector-strong
+    -fPIE
+)
+
+# Helper function to configure a target with medical device compliance
+function(therapy_device_configure_target target_name)
+    target_compile_features(${target_name} PRIVATE cxx_std_17)
+    target_compile_options(${target_name} PRIVATE ${TherapyDevice_COMPILE_OPTIONS})
+    target_link_options(${target_name} PRIVATE ${TherapyDevice_LINK_OPTIONS})
+    
+    # Add include directories
+    target_include_directories(${target_name} PRIVATE ${TherapyDevice_INCLUDE_DIRS})
+    
+    # Link required libraries
+    target_link_libraries(${target_name} PRIVATE ${TherapyDevice_LIBRARIES})
+    
+    # Set medical device compliance definitions
+    target_compile_definitions(${target_name} PRIVATE
+        THERAPY_DEVICE_IEC62304_CLASS_C=1
+        THERAPY_DEVICE_HIPAA_COMPLIANT=1
+        THERAPY_DEVICE_GDPR_COMPLIANT=1
+    )
+endfunction()
+
+# Validation
+check_required_components(TherapyDevice)
+
+# Status message
+message(STATUS "Found TherapyDevice ${TherapyDevice_VERSION}")
+message(STATUS "  Platform: ${TherapyDevice_TARGET_PLATFORM}")
+message(STATUS "  Build type: ${TherapyDevice_BUILD_TYPE}")
+message(STATUS "  Features:")
+message(STATUS "    RealSense D435: ${TherapyDevice_HAS_REALSENSE}")
+message(STATUS "    ORBBEC Femto Mega: ${TherapyDevice_HAS_ORBBEC}")
+message(STATUS "    MediaPipe AI: ${TherapyDevice_HAS_MEDIAPIPE}")
+message(STATUS "    WebSocket: ${TherapyDevice_HAS_WEBSOCKET}")
+message(STATUS "    TensorRT: ${TherapyDevice_HAS_TENSORRT}")
+message(STATUS "  Include dir: ${TherapyDevice_INCLUDE_DIR}")
+message(STATUS "  Library dir: ${TherapyDevice_LIB_DIR}")
